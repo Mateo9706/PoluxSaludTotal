@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+<style>
+    body {
+        background-color: #c9c9c9 !important;
+        padding-top: 20px !important;
+    }
+
+    .card-2 {
+        background-color: #FFF !important;
+        min-height: 20px;
+        position: relative;
+        margin-bottom: 30px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        border-radius: 2px;
+        border-radius: 15px 15px 15px 0px;
+        border: 3px solid #f4364c;
+    }
+
+        .card-2 .body {
+            font-size: 14px;
+            color: #555;
+            padding: 20px;
+        }
+</style>
+<div class="container" style="padding-top: -20px">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col align-self-center">
+            <div class="card-2 text-center">
+                <div class="body" id="cedulaValidation">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="~/Images/UploadedProfilePictures/bot-avatar.png" />
+                        </div>
+                        <div class="col-8">
+                            <p style="color: #f4364c; text-align: left; font-family: Verdana,Geneva,sans-serif; font-size: 2rem; font-weight: 400;">Se&ntilde;or @Request.Params["nombre"]</p>
+                            <p style="color: #3C1053; text-align: left; font-family: Verdana,Geneva,sans-serif; font-size: 2rem; font-weight: 400;">He creado tu caso <strong>@Request.Params["idCase"]</strong> y el caso está abierto.</p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-12">
+                        <p style="color: #3C1053; text-align: center; font-family: Verdana,Geneva,sans-serif; font-size: 1rem; font-weight: 400;">Si deseas contactarte con mis compañeros Humanos, haz clic en el Botón para conectarte.</p>
+                        @Html.ActionLink("Contactar al Agente", "LoginWebex", "Account", new { username=Request.Params["nombre"] }, new { @class = "btn btn-sami-success" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+

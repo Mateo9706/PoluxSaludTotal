@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="body">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="active nav-link" data-toggle="tab" href="#allListC"> Ver Listado</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addCompanieTab">Agregar Nueva Compañía</a></li>
+        </ul>
+        <div class="tab-content">
+            <!-- Contenido de la tabla listado INICIO -->
+            <div id="allListC" class="tab-pane container active">
+                <br />
+                <div class="listado_companias"></div>
+                <div id="carga2"></div>
+            </div>
+            <!-- Contenido de la tabla listado FIN -->
+            <!-- Contenido Agregar Nuevo Usuario INICIO -->
+            <div id="addCompanieTab" class="tab-pane container fade">
+                <div class="container-fluid">
+                    @Html.Action("Create")
+                </div>
+            </div>
+            <!-- Contenido Agregar Nuevo Usuario FIN -->
+        </div>
+    </div>
+</div>
+
+<div class="loaderbody" id="loaderbody">
+    <div class="loader"></div>
+</div>
+<br />
+<br />
+@if (ViewData["Error"] != null)
+{
+    <script>
+        alertify.error("Hubo un error al agregar al usuario, intentelo de nuevo");
+    </script>
+}
+@if (TempData["Success"] != null)
+{
+    <script>
+        alertify.success("El usuario se ha registrado correctamente.");
+    </script>
+}
+
+@section scripts
+{
+    <script>
+      var MyAppUrlSettings = {
+                    MyUsefulUrl : '@Url.Action("ListUser","UserAdmin")'
+                }
+
+                var ListCompanies = {
+                    ValueUrl : '@Url.Action("ListCompanies","CompanyAdmin")'
+                }
+                var AddUsersAdminSami = {
+                    LinkRedirectController : '@Url.Action("Register","UserAdmin")'
+                }
+    </script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#loaderbody").hide();
+            $(document).ajaxStart(function () {
+                $("#loaderbody").show();
+            }).ajaxStop(function () {
+                $("#loaderbody").hide();
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/signalr")
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/admin/ScriptCompanies.js"></script>
+}

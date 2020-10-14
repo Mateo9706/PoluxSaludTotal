@@ -1,0 +1,34 @@
+﻿@model Samico.Models.ChatViewModel
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-sami">
+    <br />
+    <div class="row">
+        <div class="card card-body bg-light2" style="max-height: 460px; overflow-y: auto" id="msgContainer">
+            <div id="Messages"></div>
+        </div>
+    </div>
+    <br />
+</div>
+<br />
+@Html.HiddenFor(m => m.Group)
+@Html.HiddenFor(m => m.ConnectionId, new { id = "ChatId" })
+@Html.HiddenFor(m => User.Identity.Name, new { id = "DisplayName" })
+@Html.Hidden("RepliedByBot", "false")
+@Html.Hidden("OtherAnswer", "false")
+@Html.Hidden("NegativeAnswer", "false")
+@Html.Hidden("AttendedByAgent", "false")
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/signalr")
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/app/user.js"></script>
+}
+
+

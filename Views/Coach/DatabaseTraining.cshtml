@@ -1,0 +1,195 @@
+﻿@model Samico.Models.ChatViewModel
+@{
+    ViewBag.Title = "Listar Usuarios";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                AÑADIR PREGUNTA Y RESPUESTAS
+            </div>
+            <div class="body">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-5">
+                        <form id="FormularioQnaPost">
+                            <center>
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </center>
+                            <div class="QnAPlusQuestion">
+                                <div class="col-12">
+                                    <div class="queryInputDynamic">
+                                        <strong>Agregar Preguntas:</strong><br />
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn" id="btn_windows" onclick="button('Windows')"><i class="fa fa-windows"></i></button>
+                                                <button type="button" class="btn" id="btn_macos" onclick="button('Mac')"><i class="fa fa-apple"></i></button>
+                                                <button type="button" class="btn" id="btn_all" onclick="button('All')"><i class="fa fa-windows"></i> <i class="fa fa-apple"></i></button>
+                                            </span>
+                                            <input type="text" id="Preguntas" name="Preguntas[]" class="form-control" placeholder="Intención-Entidad" />
+                                            <span class="input-group-btn">
+                                                <a href="javascript:void(0);" class="add_button btn btn-success" title="Add field"><i class="fa fa-plus"></i></a>
+                                            </span>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="col-12">
+                                    <strong>Agregar Respuesta:</strong><br />
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sami-success" id="btn_adjunt" data-toggle="modal" data-target="#modalAdjunt"><i class="fa fa-file"></i></button>
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <textarea class="form-control" rows="5" style="resize:none" id="Respuesta" name="Respuesta"></textarea>
+                                </div>
+                                <hr />
+                                <div class="col-12">
+                                    <strong>Seleccionar Filtro:</strong><br />
+                                    <!-- Material unchecked -->
+                                    <div class="radio">
+                                        <label><input type="radio" name="metadata" value="1">Panel Calificativo</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="metadata" value="2">Consultar Ticket</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="metadata" value="3">Paso Agente Automático</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <a href="javascript:void(0);" class="addNewQandA btn btn-sami-success"><i class="fa fa-plus"></i> Añadir</a>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="active nav-link" data-toggle="tab" href="#windows">Windows <i class="fa fa-windows"></i></a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#mac">Mac <i class="fa fa-apple"></i></a></li>
+        </ul>
+        <div class="card">
+            <div class="card-header">
+                PREGUNTA SIMPLIFICADA "LUIS"
+            </div>
+            <div class="row">
+                <div class="tab-content">
+                    <!-- Contenido de la tabla listado INICIO -->
+                    <div id="windows" class="tab-pane container active show">
+                        <div class="col-md-12 col-md-offset-5">
+                            <div class="card card-body bg-light2" style="height: 362px; padding: 29px 29px 2px; overflow-y: auto" id="msgContainer">
+                                <div id="Messages2"></div>
+                            </div>
+                            @Html.HiddenFor(m => m.Group)
+                            @Html.HiddenFor(m => m.ConnectionId, new { id = "ChatId" })
+                            @Html.HiddenFor(m => User.Identity.Name, new { id = "DisplayName" })
+                            @Html.Hidden("RepliedByBot", "false")
+                            @Html.Hidden("OtherAnswer", "false")
+                            @Html.Hidden("NegativeAnswer", "false")
+                            @Html.Hidden("AttendedByAgent", "false")
+
+                            <div class="row">
+                                <div class="input-group col-12">
+                                    <textarea type="text" class="form-control" style="resize:none;" id="Message" placeholder="Ingresa tu pregunta"></textarea>
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn" style="background-color:@Html.Raw(string.IsNullOrEmpty(User.Identity.GetFooterColor()) ? "3C1053 !important;" : User.Identity.GetFooterColor()); padding: 15px" id="Send"><i class="fa fa-paper-plane" style="color:#ffffff"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contenido editar INICIO -->
+                    <div id="mac" class="tab-pane container fade">
+                        <div class="col-md-12 col-md-offset-5">
+                            <div class="card card-body bg-light2" style="height: 362px; padding: 29px 29px 2px; overflow-y: auto" id="msgContainer">
+                                <div id="Messages3"></div>
+                            </div>
+                            @Html.HiddenFor(m => m.Group)
+                            @Html.HiddenFor(m => m.ConnectionId, new { id = "ChatId" })
+                            @Html.HiddenFor(m => User.Identity.Name, new { id = "DisplayName" })
+                            @Html.Hidden("RepliedByBot", "false")
+                            @Html.Hidden("OtherAnswer", "false")
+                            @Html.Hidden("NegativeAnswer", "false")
+                            @Html.Hidden("AttendedByAgent", "false")
+
+                            <div class="row">
+                                <div class="input-group col-12">
+                                    <textarea type="text" class="form-control" style="resize:none;" id="Message" placeholder="Ingresa tu pregunta"></textarea>
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn" style="background-color:@Html.Raw(string.IsNullOrEmpty(User.Identity.GetFooterColor()) ? "3C1053 !important;" : User.Identity.GetFooterColor()); padding: 15px" id="Send"><i class="fa fa-paper-plane" style="color:#ffffff"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                    <!-- Contenido editar FIN -->
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-body">
+    <div class="card">
+        <div class="card-header">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <a class="btn btn-sami-success publicQnA" id="publish" style="color: #fff;"><i class="fa fa-excel"></i> Publicar</a>&nbsp;
+                    <a class="btn btn-sami-success" id="btnExport" style="color: #fff;"><i class="fa fa-excel"></i> Exportar a Excel</a>&nbsp;
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="active nav-link" data-toggle="tab" href="#allList"> Ver Listado</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#editQnASelect">Editar</a></li>
+            </ul>
+            <br />
+            <div class="tab-content">
+                <!-- Contenido de la tabla listado INICIO -->
+                <div id="allList" class="tab-pane container active">
+                    <div class="col-12">
+
+                        <div class="row">
+                            <br />
+                            <table class="table">
+                                <thead class="thead-sami">
+                                    <tr>
+                                        <th width="30%">Preguntas</th>
+                                        <th width="33%">Respuesta</th>
+                                        <th width="20%">Filtro</th>
+                                        <th width="10%">Accion</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="listado_qna" style="width: 100%"></div>
+
+                            <table class="table" style="display:none" id="tableQnAExport">
+                                <tbody class="listado_qna_hidden"></tbody>
+                            </table>
+                            <div id="carga"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contenido editar INICIO -->
+                <div id="editQnASelect" class="tab-pane container fade">
+                    <div class="container-fluid">
+
+                    </div>
+                </div>
+                <!-- Contenido editar FIN -->
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,27 @@
+﻿<div style="padding-top: 10px"></div>
+
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Usuario"))
+    {
+        <footer class="page-footer footer">
+            <div class="row">
+                <div class="input-group col-12">
+                    <textarea type="text" class="form-control" style="resize:none;" id="Message" placeholder="Ingresa tu pregunta"></textarea>
+                    <div class="input-group-append">
+                        <button type="button" class="btn" style="background-color:@Html.Raw(string.IsNullOrEmpty(User.Identity.GetHeaderColor()) ? "3C1053 !important;" : User.Identity.GetHeaderColor()); padding: 15px" id="Send"><i class="fa fa-paper-plane" style="color:#ffffff"></i></button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    }
+    else
+    {
+        <footer class="page-footer footer-administrativo">
+            <div class="container text-center">
+                <span class="text-white">Copyright &copy; <a href="#" style="color: #e24743;">Axity</a> @DateTime.Now.ToString("yyyy") . Todos los derechos reservados.</span>
+            </div>
+        </footer>
+    }
+}
+

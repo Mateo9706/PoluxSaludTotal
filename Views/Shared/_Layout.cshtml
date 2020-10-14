@@ -1,0 +1,119 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewBag.Title - Pólux</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @if (Request.IsAuthenticated)
+    {
+        <link href="~/Content/sami-css-styles.css" rel="stylesheet" />
+        <style type="text/css">
+            .btn-sami-success {
+                background-color: @Html.Raw(string.IsNullOrEmpty(User.Identity.GetHeaderColor()) ? "#3C1053" : User.Identity.GetHeaderColor()) !important;
+            }
+            .btn-sami-second {
+                background-color: @Html.Raw(string.IsNullOrEmpty(User.Identity.GetFooterColor()) ? "#3C1053" : User.Identity.GetFooterColor()) !important;
+                color: black;
+            }
+            .footer-administrativo {
+                background-color: @Html.Raw(string.IsNullOrEmpty(User.Identity.GetHeaderColor()) ? "#3C1053" : User.Identity.GetHeaderColor());
+            }
+            .headerColor {
+                background-color: @Html.Raw(string.IsNullOrEmpty(User.Identity.GetHeaderColor()) ? "#3C1053 !important;" : User.Identity.GetHeaderColor());
+            }
+            .cloud-chat-sami{
+                background: @Html.Raw(string.IsNullOrEmpty(User.Identity.GetHeaderColor()) ? "#3C1053 !important;" : User.Identity.GetHeaderColor());
+            }
+            .loader {
+                border-top: 16px solid  @Html.Raw(string.IsNullOrEmpty(User.Identity.GetHeaderColor()) ? "#3C1053 !important;" : User.Identity.GetHeaderColor());
+            }
+            ul.nav.nav-tabs li a.active{
+                border-top: 3px solid @Html.Raw(string.IsNullOrEmpty(User.Identity.GetFooterColor()) ? "#3C1053 !important;" : User.Identity.GetFooterColor());
+            }
+            .navbar .navbar-collapse .navbar-nav li.active{
+                background: @Html.Raw(string.IsNullOrEmpty(User.Identity.GetFooterColor()) ? "#3C1053 !important;" : User.Identity.GetFooterColor());
+            }
+            @@-webkit-keyframes cambiarColor {
+		        0% {
+			        background-color: #fff;
+		        }
+		        100% {
+			        background-color: @Html.Raw(string.IsNullOrEmpty(User.Identity.GetHeaderColor()) ? "#3C1053 !important;" : User.Identity.GetHeaderColor());
+		        }
+	        }
+
+	        @@keyframes cambiarColor {
+		        0% {
+			        background-color: #fff;
+		        }
+		        100% {
+			        background-color: @Html.Raw(string.IsNullOrEmpty(User.Identity.GetHeaderColor()) ? "#3C1053 !important;" : User.Identity.GetHeaderColor());
+		        }
+	        }
+            // Botones
+
+            input[type=radio]:checked + label>button {
+                background-color: #3C1053 !important;
+                color: #FFF !important;
+            }
+        </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+        <!-- JavaScript -->
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css" />
+        <!-- Default theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css" />
+    }
+    else
+    {
+        <link href="~/Content/login-style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    }
+
+
+</head>
+<body>
+
+    @if (Request.IsAuthenticated)
+    {
+        <nav class="navbar navbar-expand-lg navbar-light headerColor">
+            @Html.Partial("_LoginPartial")
+        </nav>
+        <div style="padding-top: 10px"></div>
+        <div class="container-fluid body-content">
+            @RenderBody()
+            @RenderSection("SPAViews", required: false)
+        </div>
+        <div style="padding-top: 10px"></div>
+        @Html.Partial("_FooterPartial")
+    }
+    else
+    {
+        <div class="container body-content">
+            @RenderBody()
+            @RenderSection("SPAViews", required: false)
+        </div>
+    }
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/mustache")
+    <script>
+        jQuery(function () {
+            $("#formulario_login").submit();
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

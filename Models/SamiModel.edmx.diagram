@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eb9b232953754675b7211152be1c1045" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="samichatDB_prodModel.AgentRequestNotification" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.AspNetUser" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.CasosGenerado" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.Chat" Width="1.5" PointX="8" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.ChatReportSami" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.Compania" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.ConexionAgente" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.ConexionCA" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.Contexto" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.HistoricoSesion" Width="1.5" PointX="5.75" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="samichatDB_prodModel.FK_AgentRequestCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="samichatDB_prodModel.FK_UsersCompania" ManuallyRouted="false" />
+        <AssociationConnector Association="samichatDB_prodModel.FK_Chat_HistoricoSesion" ManuallyRouted="false" />
+        <AssociationConnector Association="samichatDB_prodModel.FK_Compania" ManuallyRouted="false" />
+        <AssociationConnector Association="samichatDB_prodModel.FK_Contextos_Contextos" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.AspNetRole" Width="1.5" PointX="10.375" PointY="0.875" />
+        <AssociationConnector Association="samichatDB_prodModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.EntrenamientoQnA" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.ControlArchivo" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.ChatReportAgent" Width="1.5" PointX="8.375" PointY="10.75" />
+        <EntityTypeShape EntityType="samichatDB_prodModel.ApiConversacion" Width="1.5" PointX="10.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

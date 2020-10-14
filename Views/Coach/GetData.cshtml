@@ -1,0 +1,104 @@
+﻿@model Samico.Models.QnAListEdit
+@{
+    ViewBag.Title = "GetData";
+    Layout = null;
+}
+
+
+
+@foreach (var qnaModel in Model.QnaModelListEdit)
+{
+    @Html.AntiForgeryToken()
+    <form id="FormularioQnaPost">
+        <center>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </center>
+        <input type="hidden" name="IdQna" id="IdQna" value="@qnaModel.IdQna" />
+        <div class="QnAPlusQuestion">
+            <div class="col-12">
+                <div class="queryInputDynamicEdit">
+                    <strong>Agregar Preguntas:</strong><br />
+                    <a href="javascript:void(0);" class="add_button_edit btn btn-success" title="Add field"><i class="fa fa-plus"></i> Agregar más</a>
+                    <br />
+                    @Html.Raw(string.Join(" ", qnaModel.Preguntas))
+                </div>
+            </div>
+            <br />
+            <div class="col-12">
+                <strong>Agregar Respuesta:</strong><br />
+                <textarea class="form-control" rows="5" style="resize:none" id="RespuestaE" name="RespuestaE"> @qnaModel.Respuesta</textarea>
+            </div>
+            <hr />
+            <div class="col-12">
+                <strong>Seleccionar Filtro:</strong><br />
+                @if (qnaModel.MetadataSelect == 1)
+                {
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="1" checked="checked">Panel Calificativo</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="2">Consultar Ticket</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="3">Paso Agente Automático</label>
+                    </div>
+                }
+                else if (qnaModel.MetadataSelect == 2)
+                {
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="1">Panel Calificativo</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="2" checked="checked">Consultar Ticket</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="3">Paso Agente Automático</label>
+                    </div>
+                }
+                else if (qnaModel.MetadataSelect == 3)
+                {
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="1">Panel Calificativo</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="2">Consultar Ticket</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="3" checked="checked">Paso Agente Automático</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="1">Panel Calificativo</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="2">Consultar Ticket</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="metadataE" value="3">Paso Agente Automático</label>
+                    </div>
+                }
+                <!-- Material unchecked -->
+
+
+
+            </div>
+            <div class="col-12">
+                <a href="javascript:void(0);" class="editQandA btn btn-sami-success"><i class="fa fa-edit"></i> Editar Cambios</a>
+            </div>
+
+        </div>
+    </form>
+}
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/signalr")
+        <script>
+            var PublishQnAButton = {
+                LinkSaveEdit: '@Url.Action("EditQuestionAndAnswer", "Coach")',
+            }
+        </script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/supervisor/coachEdit.js"></script>

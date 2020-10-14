@@ -1,0 +1,94 @@
+﻿@using Samico.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Iniciar sesión";
+}
+
+<div class="container" style="padding-top: -20px">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col align-self-center">
+            <div class="card text-center">
+                <div class="body" id="cedulaValidation">
+
+                    @if (@Request.Params["name"] != null && @Request.Params["name"] != "" && @Request.Params["correo"] != null && @Request.Params["correo"] != ""
+                        && Request.Params["usernamered"] != null && Request.Params["usernamered"] != "")
+                    {
+                        <div class="panel">
+                            <h3 style="color: #e24743">Bienvenido a Pólux
+                            <p style="color: #fff">Por favor espera, en unos segundos iniciamos...</p>
+                        </div>
+                        <section id="loginForm">
+                            @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", id = "formulario_login" }))
+                            {
+                                <center>
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </center>
+                                @Html.HiddenFor(m => m.Username, new { @class = "form-control", Value = @Request.Params["name"] })
+                                @Html.HiddenFor(m => m.Correo, new { @class = "form-control", Value = @Request.Params["correo"] })
+                                @Html.HiddenFor(m => m.UserRed, new { Value = @Request.Params["usernamered"] })
+                                @Html.HiddenFor(m => m.typeLoginValidate, new { @class = "form-control", Value = "1" })
+                                <div style="padding-bottom: 20px;"></div>
+                                <div class="text-center">
+                                    <img src="https://samiadministrativo.azurewebsites.net/assets/images/Clientes/Companias/SaludTotal/SaludTotal-Logo.png" class="img-fluid" style="width: 35%; height: 15%" />
+                                </div>
+                            }
+                        </section>
+                    }
+                    else
+                    {
+                        <div class="panel">
+                            <h2 class="sami-second-color">Ingreso a Pólux<br> <small>Por favor ingrese su usuario de red y contraseña.</small></h2>
+                        </div>
+                        <section id="loginForm">
+                            @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                            {
+                                <center>
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </center>
+                                <center>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Username, new { @class = "text-sami-default text-center" })
+                                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                                    </div>
+                                </center>
+                                @Html.HiddenFor(m => m.typeLoginValidate, new { @class = "form-control", Value = "2" })
+                                <center>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Password, new { @class = "text-sami-default text-center" })
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </center>
+                                <div class="forgot text-center">
+                                    @Html.CheckBoxFor(m => m.RememberMe, new { @class = "text-sami-default" })
+                                    @Html.LabelFor(m => m.RememberMe, new { @class = "text-sami-default" })
+                                </div>
+                                <center><input type="submit" value="Iniciar sesión" class="btn btn-block btn-sami-default"/></center>
+
+                                <div style="padding-bottom: 20px;"></div>
+                                <div class="text-center">
+                                    <img src="https://samiadministrativo.azurewebsites.net/assets/images/Clientes/Companias/SaludTotal/SaludTotal-Logo.png" class="img-fluid" style="width: 60%; height: 15%" />
+                
+                                </div>
+                                @* Enable this once you have account confirmation enabled for password reset functionality
+            <p>
+                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>*@
+                            }
+                        </section>
+                        <br />
+                    }
+                    <p class="text-sami-default">Todos los derechos reservados <span style="color: #e24743">Axity&reg;</span> @DateTime.Now.Year</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

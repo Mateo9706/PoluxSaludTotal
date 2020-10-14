@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "QnAMakerResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class="btn btn-sami-success" href="@Url.Action("Index","Coach")">Base de datos</a>
+    <a class="btn btn-sami-success" href="@Url.Action("QnAMakerResult","Coach")">QnA Maker</a>
+</p>
+
+<div class="card card-body">
+    <div class="card">
+        <div class="card-header">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <a class="btn btn-sami-success publicQnA" id="publish" style="color: #fff;"><i class="fa fa-excel"></i> Publicar</a>&nbsp;
+                    <a class="btn btn-sami-success" id="btnExport" style="color: #fff;"><i class="fa fa-excel"></i> Exportar a Excel</a>&nbsp;
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <br />
+            <div class="col-12">
+                
+                <div class="row">
+                    <br />
+                    <table class="table">
+                        <thead class="thead-sami">
+                            <tr>
+                                <th width="30%">Preguntas</th>
+                                <th width="33%">Respuesta</th>
+                                <th width="20%">Filtro</th>
+                                <th width="10%">Accion</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="listado_qna" style="width: 100%"></div>
+
+                    <table class="table" style="display:none" id="tableQnAExport">
+                        <tbody class="listado_qna_hidden"></tbody>
+                    </table>
+                    <div id="carga"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scriptsSupervisorTraining
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/signalr")
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/pagination.js"></script>
+    <script src="~/Scripts/supervisor/coachTest.js"></script>
+    <script src="~/Scripts/table2excel.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnExport").click(function () {
+                $("#tableQnAExport").table2excel({
+                    filename: "QnAReportTraining.xls"
+                });
+            });
+        });
+    </script>
+}

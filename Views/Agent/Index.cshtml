@@ -1,0 +1,66 @@
+﻿<div>
+    @model Samico.Models.ChatViewModel
+    @{
+        ViewBag.Title = "Chat";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <style>
+
+        .nav-tabs > li .close {
+            /*margin: -2px 0 0 10px;*/
+            font-size: 18px;
+        }
+    </style>
+
+
+    <div style="padding-bottom: 5px;"></div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="messaging">
+                <ul class="nav nav-tabs" id="tabs" role="navigation">
+                    <li class="nav-item li-tab-toggle">
+                        <a class="nav-link active" href="#tab1" data-toggle="tab">Información</a>
+                    </li>
+                </ul>
+                <div class="inbox_msg">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="mesgs">
+                                <div class="container">
+                                    <div class="msg_history" style='max-height: 330px; overflow-y: auto; height: 500px'>
+                                        <h1>Hola Bienvenido</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5" style="top: 0px;">
+            <!-- caja de usuarios notificaciones -->
+            <div class="inbox_people">
+                <div class="inbox_chat">
+                    <div id="Notifications" class="container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(m => m.Group)
+    @Html.HiddenFor(m => m.ConnectionId, new { id = "ChatId" })
+    @Html.HiddenFor(m => User.Identity.Name, new { id = "DisplayName" })
+    @Html.HiddenFor(m => m.ProfilePictureLocation, new { id = "ProfilePictureLocation" })
+
+    @section scripts
+{
+        <script src="~/Scripts/ConfigurationUsers.js"></script>
+
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/signalr")
+        <script src="~/signalr/hubs"></script>
+        <script src="~/Scripts/app/agent.js"></script>
+    }
+</div>

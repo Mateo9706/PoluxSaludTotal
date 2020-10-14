@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Samico.Models.Compania>
+@{
+    ViewBag.Title = "Listado Compañias";
+    Layout = null;
+}
+    <div>
+        <table class="table table-striped table-bordered" id="tableCompanies">
+            <thead class="thead-sami">
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Compañia)
+                    </th>
+                    <th>
+                        Acción
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdCompania)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Compañia)
+                        </td>
+                        <td>
+                            <a onclick="EditC('@Url.Action("Edit", "CompanyAdmin", new { id = item.IdCompania })')" class="btn btn-sami btn-xs btn-sami-view">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a onclick="DeleteC('@Url.Action("Delete", new { id = item.IdCompania })')" class="btn btn-sami btn-xs btn-sami-delete">
+                                <i class="fa fa-ban"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+

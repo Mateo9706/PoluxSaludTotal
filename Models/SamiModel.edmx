@@ -1,0 +1,929 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="samichatDB_prodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgentRequestNotification">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConnectionId" Type="nvarchar" MaxLength="128" />
+          <Property Name="RequesterName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RequesterGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="90" />
+          <Property Name="AttendedByAgent" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="CompanyId" Type="int" />
+          <Property Name="AttendedByAgentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ApiConversacion">
+          <Key>
+            <PropertyRef Name="IdSamiApi" />
+          </Key>
+          <Property Name="IdSamiApi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SamiApiLink" Type="nvarchar" MaxLength="300" />
+          <Property Name="SamiApiKey" Type="nvarchar" MaxLength="300" />
+          <Property Name="Fecha_Registro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CompanyId" Type="int" />
+          <Property Name="ProfilePictureLocation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdentificationUser" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="CasosGenerados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero_Caso" Type="nvarchar(max)" />
+          <Property Name="IdConexion" Type="nvarchar(max)" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="80" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="10" />
+          <Property Name="Plataforma" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="IdChat" />
+          </Key>
+          <Property Name="IdChat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSesion" Type="int" Nullable="false" />
+          <Property Name="Pregunta" Type="bit" />
+          <Property Name="Texto" Type="nvarchar(max)" />
+          <Property Name="MsgBot" Type="bit" />
+          <Property Name="Score" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ChatReportAgent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConnectionId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Texto" Type="nvarchar(max)" />
+          <Property Name="IdSesion" Type="int" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="Id_Caso" Type="nvarchar(max)" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ChatReportSami">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="CompanyId" Type="int" />
+          <Property Name="IdSesion" Type="int" />
+          <Property Name="Pregunta" Type="nvarchar(max)" />
+          <Property Name="Respuesta" Type="nvarchar(max)" />
+          <Property Name="Resuelto" Type="bit" />
+          <Property Name="Satisfecho" Type="bit" />
+          <Property Name="Formato_Luis" Type="nvarchar(max)" />
+          <Property Name="S.O" Type="nvarchar" MaxLength="10" />
+          <Property Name="Intencion" Type="nvarchar" MaxLength="80" />
+          <Property Name="Entidad" Type="nvarchar" MaxLength="80" />
+          <Property Name="No_Caso" Type="nvarchar(max)" />
+          <Property Name="Estado_Caso" Type="nvarchar" MaxLength="30" />
+          <Property Name="Fecha_Registro" Type="datetime" />
+          <Property Name="IdUsuario" Type="nvarchar" MaxLength="128" />
+          <Property Name="Puntaje_LUIS" Type="nvarchar" MaxLength="20" />
+          <Property Name="Puntaje_QnA" Type="nvarchar" MaxLength="10" />
+          <Property Name="Plataforma" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Compania">
+          <Key>
+            <PropertyRef Name="IdCompania" />
+          </Key>
+          <Property Name="IdCompania" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Compañia" Type="nvarchar" MaxLength="200" />
+          <Property Name="KnowledgebaseId" Type="nvarchar" MaxLength="500" />
+          <Property Name="QnamakerSubscriptionKey" Type="nvarchar" MaxLength="500" />
+          <Property Name="QnamakerUriBase" Type="nvarchar" MaxLength="500" />
+          <Property Name="EndPointApiLuis" Type="nvarchar" MaxLength="500" />
+          <Property Name="AuthoringKeyApiLuis" Type="nvarchar" MaxLength="500" />
+          <Property Name="UriBaseApiLuis" Type="nvarchar" MaxLength="500" />
+          <Property Name="KeySpellCheck" Type="nvarchar" MaxLength="500" />
+          <Property Name="HeaderColor" Type="nvarchar" MaxLength="7" />
+          <Property Name="FooterColor" Type="nvarchar" MaxLength="7" />
+          <Property Name="LogoLocation" Type="nvarchar(max)" />
+          <Property Name="ValidateDA" Type="bit" />
+          <Property Name="IpAuthenticationDA" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dominio_Compania" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dominio_SamiApi" Type="nvarchar" MaxLength="20" />
+          <Property Name="QnamakerSubscriptionKeyAzure" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ConexionAgentes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FechaConexion" Type="datetime" />
+          <Property Name="FechaDesconexion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ConexionCA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCompania" Type="int" />
+          <Property Name="UsuarioCA" Type="nvarchar" MaxLength="100" />
+          <Property Name="PasswordCA" Type="nvarchar" MaxLength="100" />
+          <Property Name="Category" Type="nvarchar" MaxLength="100" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="100" />
+          <Property Name="Requested_by" Type="nvarchar" MaxLength="100" />
+          <Property Name="Group_ServiceDesk" Type="nvarchar" MaxLength="100" />
+          <Property Name="Group" Type="nvarchar" MaxLength="100" />
+          <Property Name="Urgency" Type="nvarchar" MaxLength="100" />
+          <Property Name="CR" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Contextos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="nvarchar" MaxLength="128" />
+          <Property Name="ticketId" Type="nvarchar" MaxLength="60" />
+          <Property Name="result" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ControlArchivos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="nvarchar" MaxLength="128" />
+          <Property Name="IdCompany" Type="int" />
+          <Property Name="FileUpload" Type="nvarchar" MaxLength="800" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="800" />
+          <Property Name="FechaPublicacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EntrenamientoQnA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Company" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar(max)" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoricoSesion">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+          </Key>
+          <Property Name="IdSesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionConnectionId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NivelSatisfaccion" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Transferencia" Type="bit" />
+          <Property Name="Activa" Type="bit" />
+          <Property Name="Identificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AgentRequestCompany">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="0..1" />
+          <End Role="AgentRequestNotification" Type="Self.AgentRequestNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="IdCompania" />
+            </Principal>
+            <Dependent Role="AgentRequestNotification">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_HistoricoSesion">
+          <End Role="HistoricoSesion" Type="Self.HistoricoSesion" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistoricoSesion">
+              <PropertyRef Name="IdSesion" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="IdSesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compania">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="0..1" />
+          <End Role="ConexionCA" Type="Self.ConexionCA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="IdCompania" />
+            </Principal>
+            <Dependent Role="ConexionCA">
+              <PropertyRef Name="IdCompania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contextos_Contextos">
+          <End Role="Contextos" Type="Self.Contextos" Multiplicity="1" />
+          <End Role="Contextos1" Type="Self.Contextos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Contextos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contextos1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersCompania">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="IdCompania" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="samichatDB_prodModelStoreContainer">
+          <EntitySet Name="AgentRequestNotification" EntityType="Self.AgentRequestNotification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApiConversacion" EntityType="Self.ApiConversacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CasosGenerados" EntityType="Self.CasosGenerados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatReportAgent" EntityType="Self.ChatReportAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatReportSami" EntityType="Self.ChatReportSami" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compania" EntityType="Self.Compania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConexionAgentes" EntityType="Self.ConexionAgentes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConexionCA" EntityType="Self.ConexionCA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contextos" EntityType="Self.Contextos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ControlArchivos" EntityType="Self.ControlArchivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EntrenamientoQnA" EntityType="Self.EntrenamientoQnA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoricoSesion" EntityType="Self.HistoricoSesion" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AgentRequestCompany" Association="Self.FK_AgentRequestCompany">
+            <End Role="Compania" EntitySet="Compania" />
+            <End Role="AgentRequestNotification" EntitySet="AgentRequestNotification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_HistoricoSesion" Association="Self.FK_Chat_HistoricoSesion">
+            <End Role="HistoricoSesion" EntitySet="HistoricoSesion" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compania" Association="Self.FK_Compania">
+            <End Role="Compania" EntitySet="Compania" />
+            <End Role="ConexionCA" EntitySet="ConexionCA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contextos_Contextos" Association="Self.FK_Contextos_Contextos">
+            <End Role="Contextos" EntitySet="Contextos" />
+            <End Role="Contextos1" EntitySet="Contextos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersCompania" Association="Self.FK_UsersCompania">
+            <End Role="Compania" EntitySet="Compania" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="samichatDB_prodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgentRequestNotification">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConnectionId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RequesterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RequesterGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AgentName" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="AttendedByAgent" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyId" Type="Int32" />
+          <Property Name="AttendedByAgentDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Compania" Relationship="Self.FK_AgentRequestCompany" FromRole="AgentRequestNotification" ToRole="Compania" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" />
+          <Property Name="ProfilePictureLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdentificationUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Compania" Relationship="Self.FK_UsersCompania" FromRole="AspNetUsers" ToRole="Compania" />
+          <NavigationProperty Name="AspNetRoles" Relationship="samichatDB_prodModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="CasosGenerado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero_Caso" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Plataforma" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IdConexion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="IdChat" />
+          </Key>
+          <Property Name="IdChat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSesion" Type="Int32" Nullable="false" />
+          <Property Name="Pregunta" Type="Boolean" />
+          <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MsgBot" Type="Boolean" />
+          <Property Name="Score" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HistoricoSesion" Relationship="Self.FK_Chat_HistoricoSesion" FromRole="Chat" ToRole="HistoricoSesion" />
+        </EntityType>
+        <EntityType Name="ChatReportSami">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdSesion" Type="Int32" />
+          <Property Name="Pregunta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Respuesta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Resuelto" Type="Boolean" />
+          <Property Name="Satisfecho" Type="Boolean" />
+          <Property Name="Formato_Luis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="S_O" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Intencion" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Entidad" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="No_Caso" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Estado_Caso" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Registro" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Puntaje_LUIS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Puntaje_QnA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Plataforma" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Compania">
+          <Key>
+            <PropertyRef Name="IdCompania" />
+          </Key>
+          <Property Name="IdCompania" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Compañia" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="KnowledgebaseId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="QnamakerSubscriptionKey" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="QnamakerUriBase" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EndPointApiLuis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AuthoringKeyApiLuis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UriBaseApiLuis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="KeySpellCheck" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HeaderColor" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="FooterColor" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="LogoLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ValidateDA" Type="Boolean" />
+          <Property Name="IpAuthenticationDA" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Dominio_Compania" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Dominio_SamiApi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AgentRequestNotifications" Relationship="Self.FK_AgentRequestCompany" FromRole="Compania" ToRole="AgentRequestNotification" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_UsersCompania" FromRole="Compania" ToRole="AspNetUsers" />
+          <NavigationProperty Name="ConexionCAs" Relationship="Self.FK_Compania" FromRole="Compania" ToRole="ConexionCA" />
+          <Property Name="QnamakerSubscriptionKeyAzure" Type="String" Nullable="true" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ConexionAgente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaConexion" Type="DateTime" Precision="3" />
+          <Property Name="FechaDesconexion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ConexionCA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCompania" Type="Int32" />
+          <Property Name="UsuarioCA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordCA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Requested_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Group" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Urgency" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Compania" Relationship="Self.FK_Compania" FromRole="ConexionCA" ToRole="Compania" />
+          <Property Name="Group_ServiceDesk" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Contexto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ticketId" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contextos1" Relationship="Self.FK_Contextos_Contextos" FromRole="Contextos" ToRole="Contextos1" />
+          <NavigationProperty Name="Contexto1" Relationship="Self.FK_Contextos_Contextos" FromRole="Contextos1" ToRole="Contextos" />
+        </EntityType>
+        <EntityType Name="HistoricoSesion">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+          </Key>
+          <Property Name="IdSesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionConnectionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NivelSatisfaccion" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Transferencia" Type="Boolean" />
+          <Property Name="Activa" Type="Boolean" />
+          <Property Name="Identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Chats" Relationship="Self.FK_Chat_HistoricoSesion" FromRole="HistoricoSesion" ToRole="Chat" />
+        </EntityType>
+        <Association Name="FK_AgentRequestCompany">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="0..1" />
+          <End Role="AgentRequestNotification" Type="Self.AgentRequestNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="IdCompania" />
+            </Principal>
+            <Dependent Role="AgentRequestNotification">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersCompania">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="IdCompania" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_HistoricoSesion">
+          <End Role="HistoricoSesion" Type="Self.HistoricoSesion" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistoricoSesion">
+              <PropertyRef Name="IdSesion" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="IdSesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compania">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="0..1" />
+          <End Role="ConexionCA" Type="Self.ConexionCA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="IdCompania" />
+            </Principal>
+            <Dependent Role="ConexionCA">
+              <PropertyRef Name="IdCompania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contextos_Contextos">
+          <End Role="Contextos" Type="Self.Contexto" Multiplicity="1" />
+          <End Role="Contextos1" Type="Self.Contexto" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Contextos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contextos1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SamiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgentRequestNotifications" EntityType="Self.AgentRequestNotification" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="CasosGenerados" EntityType="Self.CasosGenerado" />
+          <EntitySet Name="Chats" EntityType="Self.Chat" />
+          <EntitySet Name="ChatReportSamis" EntityType="Self.ChatReportSami" />
+          <EntitySet Name="Companias" EntityType="Self.Compania" />
+          <EntitySet Name="ConexionAgentes" EntityType="Self.ConexionAgente" />
+          <EntitySet Name="ConexionCAs" EntityType="Self.ConexionCA" />
+          <EntitySet Name="Contextos" EntityType="Self.Contexto" />
+          <EntitySet Name="HistoricoSesions" EntityType="Self.HistoricoSesion" />
+          <AssociationSet Name="FK_AgentRequestCompany" Association="Self.FK_AgentRequestCompany">
+            <End Role="Compania" EntitySet="Companias" />
+            <End Role="AgentRequestNotification" EntitySet="AgentRequestNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersCompania" Association="Self.FK_UsersCompania">
+            <End Role="Compania" EntitySet="Companias" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_HistoricoSesion" Association="Self.FK_Chat_HistoricoSesion">
+            <End Role="HistoricoSesion" EntitySet="HistoricoSesions" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compania" Association="Self.FK_Compania">
+            <End Role="Compania" EntitySet="Companias" />
+            <End Role="ConexionCA" EntitySet="ConexionCAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contextos_Contextos" Association="Self.FK_Contextos_Contextos">
+            <End Role="Contextos" EntitySet="Contextos" />
+            <End Role="Contextos1" EntitySet="Contextos" />
+          </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="samichatDB_prodModel.AspNetRole" />
+          <AssociationSet Name="AspNetUserRoles" Association="samichatDB_prodModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="EntrenamientoQnAs" EntityType="samichatDB_prodModel.EntrenamientoQnA" />
+          <EntitySet Name="ControlArchivos" EntityType="samichatDB_prodModel.ControlArchivo" />
+          <EntitySet Name="ChatReportAgents" EntityType="samichatDB_prodModel.ChatReportAgent" />
+          <EntitySet Name="ApiConversacions" EntityType="samichatDB_prodModel.ApiConversacion" />
+        </EntityContainer>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="samichatDB_prodModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="AspNetUserRoles">
+          <End Type="samichatDB_prodModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="samichatDB_prodModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="EntrenamientoQnA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ControlArchivo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdCompany" Type="Int32" />
+          <Property Name="FileUpload" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="FechaPublicacion" Type="DateTime" Precision="3" />
+          <Property Name="FileName" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ChatReportAgent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConnectionId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdSesion" Type="Int32" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Id_Caso" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ApiConversacion">
+          <Key>
+            <PropertyRef Name="IdSamiApi" />
+          </Key>
+          <Property Name="IdSamiApi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SamiApiLink" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="SamiApiKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Registro" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="samichatDB_prodModelStoreContainer" CdmEntityContainer="SamiEntities">
+          <EntitySetMapping Name="AgentRequestNotifications">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.AgentRequestNotification">
+              <MappingFragment StoreEntitySet="AgentRequestNotification">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="ConnectionId" ColumnName="ConnectionId" />
+                <ScalarProperty Name="RequesterName" ColumnName="RequesterName" />
+                <ScalarProperty Name="RequesterGroup" ColumnName="RequesterGroup" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="AttendedByAgent" ColumnName="AttendedByAgent" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="AttendedByAgentDate" ColumnName="AttendedByAgentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="ProfilePictureLocation" ColumnName="ProfilePictureLocation" />
+                <ScalarProperty Name="IdentificationUser" ColumnName="IdentificationUser" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CasosGenerados">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.CasosGenerado">
+              <MappingFragment StoreEntitySet="CasosGenerados">
+                <ScalarProperty Name="IdConexion" ColumnName="IdConexion" />
+                <ScalarProperty Name="Plataforma" ColumnName="Plataforma" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Numero_Caso" ColumnName="Numero_Caso" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chats">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.Chat">
+              <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="IdChat" ColumnName="IdChat" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="MsgBot" ColumnName="MsgBot" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatReportSamis">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.ChatReportSami">
+              <MappingFragment StoreEntitySet="ChatReportSami">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Plataforma" ColumnName="Plataforma" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="Resuelto" ColumnName="Resuelto" />
+                <ScalarProperty Name="Satisfecho" ColumnName="Satisfecho" />
+                <ScalarProperty Name="Formato_Luis" ColumnName="Formato_Luis" />
+                <ScalarProperty Name="S_O" ColumnName="S.O" />
+                <ScalarProperty Name="Intencion" ColumnName="Intencion" />
+                <ScalarProperty Name="Entidad" ColumnName="Entidad" />
+                <ScalarProperty Name="No_Caso" ColumnName="No_Caso" />
+                <ScalarProperty Name="Estado_Caso" ColumnName="Estado_Caso" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Puntaje_LUIS" ColumnName="Puntaje_LUIS" />
+                <ScalarProperty Name="Puntaje_QnA" ColumnName="Puntaje_QnA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companias">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.Compania">
+              <MappingFragment StoreEntitySet="Compania">
+                <ScalarProperty Name="QnamakerSubscriptionKeyAzure" ColumnName="QnamakerSubscriptionKeyAzure" />
+                <ScalarProperty Name="IdCompania" ColumnName="IdCompania" />
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
+                <ScalarProperty Name="KnowledgebaseId" ColumnName="KnowledgebaseId" />
+                <ScalarProperty Name="QnamakerSubscriptionKey" ColumnName="QnamakerSubscriptionKey" />
+                <ScalarProperty Name="QnamakerUriBase" ColumnName="QnamakerUriBase" />
+                <ScalarProperty Name="EndPointApiLuis" ColumnName="EndPointApiLuis" />
+                <ScalarProperty Name="AuthoringKeyApiLuis" ColumnName="AuthoringKeyApiLuis" />
+                <ScalarProperty Name="UriBaseApiLuis" ColumnName="UriBaseApiLuis" />
+                <ScalarProperty Name="KeySpellCheck" ColumnName="KeySpellCheck" />
+                <ScalarProperty Name="HeaderColor" ColumnName="HeaderColor" />
+                <ScalarProperty Name="FooterColor" ColumnName="FooterColor" />
+                <ScalarProperty Name="LogoLocation" ColumnName="LogoLocation" />
+                <ScalarProperty Name="ValidateDA" ColumnName="ValidateDA" />
+                <ScalarProperty Name="IpAuthenticationDA" ColumnName="IpAuthenticationDA" />
+                <ScalarProperty Name="Dominio_Compania" ColumnName="Dominio_Compania" />
+                <ScalarProperty Name="Dominio_SamiApi" ColumnName="Dominio_SamiApi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConexionAgentes">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.ConexionAgente">
+              <MappingFragment StoreEntitySet="ConexionAgentes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="FechaConexion" ColumnName="FechaConexion" />
+                <ScalarProperty Name="FechaDesconexion" ColumnName="FechaDesconexion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConexionCAs">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.ConexionCA">
+              <MappingFragment StoreEntitySet="ConexionCA">
+                <ScalarProperty Name="Group_ServiceDesk" ColumnName="Group_ServiceDesk" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdCompania" ColumnName="IdCompania" />
+                <ScalarProperty Name="UsuarioCA" ColumnName="UsuarioCA" />
+                <ScalarProperty Name="PasswordCA" ColumnName="PasswordCA" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Requested_by" ColumnName="Requested_by" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Urgency" ColumnName="Urgency" />
+                <ScalarProperty Name="CR" ColumnName="CR" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contextos">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.Contexto">
+              <MappingFragment StoreEntitySet="Contextos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="ticketId" ColumnName="ticketId" />
+                <ScalarProperty Name="result" ColumnName="result" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoricoSesions">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.HistoricoSesion">
+              <MappingFragment StoreEntitySet="HistoricoSesion">
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+                <ScalarProperty Name="SessionConnectionId" ColumnName="SessionConnectionId" />
+                <ScalarProperty Name="NivelSatisfaccion" ColumnName="NivelSatisfaccion" />
+                <ScalarProperty Name="Transferencia" ColumnName="Transferencia" />
+                <ScalarProperty Name="Activa" ColumnName="Activa" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="samichatDB_prodModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="EntrenamientoQnAs">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.EntrenamientoQnA">
+              <MappingFragment StoreEntitySet="EntrenamientoQnA">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ControlArchivos">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.ControlArchivo">
+              <MappingFragment StoreEntitySet="ControlArchivos">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
+                <ScalarProperty Name="FileUpload" ColumnName="FileUpload" />
+                <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatReportAgents">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.ChatReportAgent">
+              <MappingFragment StoreEntitySet="ChatReportAgent">
+                <ScalarProperty Name="Id_Caso" ColumnName="Id_Caso" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="ConnectionId" ColumnName="ConnectionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApiConversacions">
+            <EntityTypeMapping TypeName="samichatDB_prodModel.ApiConversacion">
+              <MappingFragment StoreEntitySet="ApiConversacion">
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="SamiApiKey" ColumnName="SamiApiKey" />
+                <ScalarProperty Name="SamiApiLink" ColumnName="SamiApiLink" />
+                <ScalarProperty Name="IdSamiApi" ColumnName="IdSamiApi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,74 @@
+﻿@model Samico.Models.Compania
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Compania</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Compañia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KnowledgebaseId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KnowledgebaseId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QnamakerSubscriptionKey)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QnamakerSubscriptionKey)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QnamakerUriBase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QnamakerUriBase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeaderColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeaderColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FooterColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FooterColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogoLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogoLocation)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCompania }) |
+    @Html.ActionLink("Back to List", "Manage")
+</p>

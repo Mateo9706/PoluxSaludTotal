@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="samichatDB_prodModelStoreContainer" CdmEntityContainer="SamiEntities">
+    <EntitySetMapping Name="AgentRequestNotifications">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.AgentRequestNotification">
+        <MappingFragment StoreEntitySet="AgentRequestNotification">
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="ConnectionId" ColumnName="ConnectionId" />
+          <ScalarProperty Name="RequesterName" ColumnName="RequesterName" />
+          <ScalarProperty Name="RequesterGroup" ColumnName="RequesterGroup" />
+          <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+          <ScalarProperty Name="AttendedByAgent" ColumnName="AttendedByAgent" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="AttendedByAgentDate" ColumnName="AttendedByAgentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="ProfilePictureLocation" ColumnName="ProfilePictureLocation" />
+          <ScalarProperty Name="IdentificationUser" ColumnName="IdentificationUser" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CasosGenerados">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.CasosGenerado">
+        <MappingFragment StoreEntitySet="CasosGenerados">
+          <ScalarProperty Name="IdConexion" ColumnName="IdConexion" />
+          <ScalarProperty Name="Plataforma" ColumnName="Plataforma" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero_Caso" ColumnName="Numero_Caso" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chats">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.Chat">
+        <MappingFragment StoreEntitySet="Chat">
+          <ScalarProperty Name="IdChat" ColumnName="IdChat" />
+          <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+          <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="MsgBot" ColumnName="MsgBot" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChatReportSamis">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.ChatReportSami">
+        <MappingFragment StoreEntitySet="ChatReportSami">
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Plataforma" ColumnName="Plataforma" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+          <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+          <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+          <ScalarProperty Name="Resuelto" ColumnName="Resuelto" />
+          <ScalarProperty Name="Satisfecho" ColumnName="Satisfecho" />
+          <ScalarProperty Name="Formato_Luis" ColumnName="Formato_Luis" />
+          <ScalarProperty Name="S_O" ColumnName="S.O" />
+          <ScalarProperty Name="Intencion" ColumnName="Intencion" />
+          <ScalarProperty Name="Entidad" ColumnName="Entidad" />
+          <ScalarProperty Name="No_Caso" ColumnName="No_Caso" />
+          <ScalarProperty Name="Estado_Caso" ColumnName="Estado_Caso" />
+          <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Puntaje_LUIS" ColumnName="Puntaje_LUIS" />
+          <ScalarProperty Name="Puntaje_QnA" ColumnName="Puntaje_QnA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companias">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.Compania">
+        <MappingFragment StoreEntitySet="Compania">
+          <ScalarProperty Name="QnamakerSubscriptionKeyAzure" ColumnName="QnamakerSubscriptionKeyAzure" />
+          <ScalarProperty Name="IdCompania" ColumnName="IdCompania" />
+          <ScalarProperty Name="Compañia" ColumnName="Compañia" />
+          <ScalarProperty Name="KnowledgebaseId" ColumnName="KnowledgebaseId" />
+          <ScalarProperty Name="QnamakerSubscriptionKey" ColumnName="QnamakerSubscriptionKey" />
+          <ScalarProperty Name="QnamakerUriBase" ColumnName="QnamakerUriBase" />
+          <ScalarProperty Name="EndPointApiLuis" ColumnName="EndPointApiLuis" />
+          <ScalarProperty Name="AuthoringKeyApiLuis" ColumnName="AuthoringKeyApiLuis" />
+          <ScalarProperty Name="UriBaseApiLuis" ColumnName="UriBaseApiLuis" />
+          <ScalarProperty Name="KeySpellCheck" ColumnName="KeySpellCheck" />
+          <ScalarProperty Name="HeaderColor" ColumnName="HeaderColor" />
+          <ScalarProperty Name="FooterColor" ColumnName="FooterColor" />
+          <ScalarProperty Name="LogoLocation" ColumnName="LogoLocation" />
+          <ScalarProperty Name="ValidateDA" ColumnName="ValidateDA" />
+          <ScalarProperty Name="IpAuthenticationDA" ColumnName="IpAuthenticationDA" />
+          <ScalarProperty Name="Dominio_Compania" ColumnName="Dominio_Compania" />
+          <ScalarProperty Name="Dominio_SamiApi" ColumnName="Dominio_SamiApi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConexionAgentes">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.ConexionAgente">
+        <MappingFragment StoreEntitySet="ConexionAgentes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="FechaConexion" ColumnName="FechaConexion" />
+          <ScalarProperty Name="FechaDesconexion" ColumnName="FechaDesconexion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConexionCAs">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.ConexionCA">
+        <MappingFragment StoreEntitySet="ConexionCA">
+          <ScalarProperty Name="Group_ServiceDesk" ColumnName="Group_ServiceDesk" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdCompania" ColumnName="IdCompania" />
+          <ScalarProperty Name="UsuarioCA" ColumnName="UsuarioCA" />
+          <ScalarProperty Name="PasswordCA" ColumnName="PasswordCA" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Requested_by" ColumnName="Requested_by" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Urgency" ColumnName="Urgency" />
+          <ScalarProperty Name="CR" ColumnName="CR" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contextos">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.Contexto">
+        <MappingFragment StoreEntitySet="Contextos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="ticketId" ColumnName="ticketId" />
+          <ScalarProperty Name="result" ColumnName="result" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistoricoSesions">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.HistoricoSesion">
+        <MappingFragment StoreEntitySet="HistoricoSesion">
+          <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+          <ScalarProperty Name="SessionConnectionId" ColumnName="SessionConnectionId" />
+          <ScalarProperty Name="NivelSatisfaccion" ColumnName="NivelSatisfaccion" />
+          <ScalarProperty Name="Transferencia" ColumnName="Transferencia" />
+          <ScalarProperty Name="Activa" ColumnName="Activa" />
+          <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="samichatDB_prodModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="EntrenamientoQnAs">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.EntrenamientoQnA">
+        <MappingFragment StoreEntitySet="EntrenamientoQnA">
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ControlArchivos">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.ControlArchivo">
+        <MappingFragment StoreEntitySet="ControlArchivos">
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
+          <ScalarProperty Name="FileUpload" ColumnName="FileUpload" />
+          <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChatReportAgents">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.ChatReportAgent">
+        <MappingFragment StoreEntitySet="ChatReportAgent">
+          <ScalarProperty Name="Id_Caso" ColumnName="Id_Caso" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="ConnectionId" ColumnName="ConnectionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApiConversacions">
+      <EntityTypeMapping TypeName="samichatDB_prodModel.ApiConversacion">
+        <MappingFragment StoreEntitySet="ApiConversacion">
+          <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+          <ScalarProperty Name="SamiApiKey" ColumnName="SamiApiKey" />
+          <ScalarProperty Name="SamiApiLink" ColumnName="SamiApiLink" />
+          <ScalarProperty Name="IdSamiApi" ColumnName="IdSamiApi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

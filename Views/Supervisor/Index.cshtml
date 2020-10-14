@@ -1,0 +1,19 @@
+﻿@model Samico.Models.ChatViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.HiddenFor(m => m.IdUserAspNetUser)
+
+<iframe src="" width="100%" id="iframe" style="height: 150vh; border-color: none !important;"></iframe>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var url = "https://samiadministrativo.azurewebsites.net?id-users=" + $("#IdUserAspNetUser").val();
+            $('#iframe').attr('src', url);
+            $('#iframe').reload();
+        });
+    </script>
+}
