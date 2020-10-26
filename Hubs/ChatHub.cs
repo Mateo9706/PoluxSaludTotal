@@ -42,7 +42,10 @@ namespace Samico.Hubs
         string[] nullado3 = new string[0];
         int login = 0;
         private string rating = null;
-        
+        public string num = "";
+        List<string> ticketsNumbers = new List<string>();
+        public string numHnadle = "";
+
         /// <summary>
         /// Return a view as HTML by compiling it using Razor Engine
         /// </summary>
@@ -367,12 +370,13 @@ namespace Samico.Hubs
 
             string[] separar;
             string descripcion = "";
-            separar = ticket.Split('-');
-            casoID = separar[1];
-            descripcion = separar[2];
+            //separar = ticket.Split('-');
+            //casoID = separar[1];
+            casoID = ticket[0];
+            //descripcion = separar[2];
 
             // Se actualiza el estado a Resuelto
-            UpdateTicket(separar[0], connectionCA.UsuarioCA, connectionCA.PasswordCA);
+            UpdateTicket(ticket[1], connectionCA.UsuarioCA, connectionCA.PasswordCA);
             validarRespuestaCorrecta(chat.Name, 1);
 
             if (chat.TypeBoolResolved == 1)
@@ -537,7 +541,7 @@ namespace Samico.Hubs
 
             // Variables
             var answers = "";
-            var ticket = "";
+            //var ticket = "";
             string[] separar;
             string casoID = "";
             string descripcion = "";
@@ -548,13 +552,14 @@ namespace Samico.Hubs
                 // Caso donde se envia correo al agente, si el usuario no desea pasar con el agente desde SAMI.
                 case "NegativeAnswer":
 
-                    ticket = CreateTicketCA(nameUser, connectionCA.UsuarioCA, connectionCA.PasswordCA, connectionCA.Category, connectionCA.Group, connectionCA.Urgency);
-                    separar = ticket.Split('-');
-                    casoID = separar[1];
+                    var ticket = CreateTicketCA(nameUser, connectionCA.UsuarioCA, connectionCA.PasswordCA, connectionCA.Category, connectionCA.Group, connectionCA.Urgency);
+                    //separar = ticket.Split('-');
+                    casoID = ticket[0];
+                    //casoID = separar[1];
                     estado = "Progreso";
-                    descripcion = separar[2];
+                    //descripcion = separar[2];
                     // Se actualiza el estado a Resuelto
-                    UpdateTicket(separar[0], connectionCA.UsuarioCA, connectionCA.PasswordCA);
+                    UpdateTicket(ticket[1], connectionCA.UsuarioCA, connectionCA.PasswordCA);
                     validarRespuestaCorrecta(nameUser, 1);
                     UpdateSamiChatReport(nameUser, true, true, casoID, estado);
                     answers = $"Fue un gusto ayudarle, el número del caso es: {casoID} y su estado es Pendiente por Atencion. </br> ¿Le puedo ayudar en algo más? <script>nextQuery();</script>";
@@ -565,7 +570,7 @@ namespace Samico.Hubs
                         Numero_Caso = casoID,
                         Usuario = nameUser,
                         IdConexion = idConexion,
-                        Descripcion = descripcion,
+                        Descripcion = "",//descripcion
                         Estado = estado,
                         Plataforma = "Chat"
                     };
@@ -615,12 +620,13 @@ namespace Samico.Hubs
                     // Se crea el caso
                     
                     ticket = CreateTicketCA(nameUser, connectionCA.UsuarioCA, connectionCA.PasswordCA, connectionCA.Category, connectionCA.Group, connectionCA.Urgency);
-                    separar = ticket.Split('-');
-                    casoID = separar[1];
+                    //separar = ticket.Split('-');
+                    casoID = ticket[0];
+                    //casoID = separar[1];
                     estado = "Resuelto";
-                    descripcion = separar[2];
+                    //descripcion = separar[2];
                     // Se actualiza el estado a Resuelto
-                    UpdateTicket2(separar[0], connectionCA.UsuarioCA, connectionCA.PasswordCA);
+                    UpdateTicket2(ticket[1], connectionCA.UsuarioCA, connectionCA.PasswordCA);
                     validarRespuestaCorrecta(nameUser, 1);
                     UpdateSamiChatReport(nameUser, true, true, casoID, estado);
                     answers = $"Fue un gusto ayudarle, el número del caso es: {casoID} y su estado es Resuelto. </br> ¿Le puedo ayudar en algo más? <script>nextQuery();</script>";
@@ -669,7 +675,7 @@ namespace Samico.Hubs
         /// <param name="summary"></param>
         /// <param name="description"></param>
         /// <returns></returns>
-        public string CreateTicketCA(string userName, string user, string pass, string category, string group, string urgency)
+        public List<string> CreateTicketCA(string userName, string user, string pass, string category, string group, string urgency)
         {
 
             // Datos para eliminar
@@ -769,10 +775,44 @@ namespace Samico.Hubs
             //cnt:E59543D7E17B8F4DA614DA28F7EDB299
             // Método para crear un caso.
             string create = ca.createRequest(login, "cnt:D3903AE7DC22EF4099B826063CA9AAAC", attVal, nullado1, "", nullado3, ref cr, ref nullado);
+
+            XElement caCr = XElement.Parse(create);
+            var rft = caCr.Descendants("AttrName").ToList();
+            var refNum = caCr.Descendants("AttrValue").ToList();
+
+            foreach (var item in rft)
+            {
+                var cns = item.Value;
+                if (cns == "ref_num")
+                {
+                    var nt = refNum[114].Value;
+                    ticketsNumbers.Add(nt);
+                }
+            }
+
+            foreach (var nw in refNum)
+            {
+                var cns = nw.Value;
+                /*if (cns.Contains("RQ"))
+                {
+                    num = cns;
+                    ticketsNumbers.Add(num);
+                }*/
+                if (cns.Contains("cr:"))
+                {
+                    numHnadle = cns;
+                    ticketsNumbers.Add(numHnadle);
+                }
+
+
+            }
+           
+
             // Cierra Sesión
             ca.logout(login);
 
-            return create + "-" + descriptions.ToString();
+            return ticketsNumbers;
+            //return create + "-" + descriptions.ToString();
 
 
             //return "prueba-prueba-" + description.ToString();
