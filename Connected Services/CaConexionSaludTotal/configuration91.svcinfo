@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="OJNBN88aGgPQeKltoGLmF7muaEY=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="yv9FBjp97+S9P6LOkzp3O0kmmBqWpwiwysGosePFuYo=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="USD_WebServiceSoapSoapBinding">
       <properties>
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="USD_WebServiceSoap" contract="CaConexionSaludTotal.USD_WebServiceSoap" bindingType="basicHttpBinding" address="https://stmesa.getronics-latam.com.co:8445/axis/services/USD_R11_WebService" bindingConfiguration="USD_WebServiceSoapSoapBinding">
+    <endpoint name="USD_WebServiceSoap" contract="CaConexionSaludTotal.USD_WebServiceSoap" bindingType="basicHttpBinding" address="https://stmesa.axitycolombia.com:8445/axis/services/USD_R11_WebService" bindingConfiguration="USD_WebServiceSoapSoapBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://stmesa.getronics-latam.com.co:8445/axis/services/USD_R11_WebService</serializedValue>
+          <serializedValue>https://stmesa.axitycolombia.com:8445/axis/services/USD_R11_WebService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

@@ -6754,7 +6754,7 @@ namespace Samico.CaConexionSaludTotal {
             Samico.CaConexionSaludTotal.createRequestResponse retVal = ((Samico.CaConexionSaludTotal.USD_WebServiceSoap)(this)).createRequest(inValue);
             newRequestHandle = retVal.newRequestHandle;
             newRequestNumber = retVal.newRequestNumber;
-            return retVal.newRequestHandle + "-" + retVal.newRequestNumber;
+            return retVal.createRequestReturn;
         }
         
         public System.Threading.Tasks.Task<Samico.CaConexionSaludTotal.createRequestResponse> createRequestAsync(Samico.CaConexionSaludTotal.createRequestRequest request) {
@@ -7610,11 +7610,9 @@ namespace Samico.CaConexionSaludTotal {
         
         public int login(string username, string password) {
             Samico.CaConexionSaludTotal.loginRequest inValue = new Samico.CaConexionSaludTotal.loginRequest();
-            //Samico.CaConexionPruebas.loginRequest inValue = new Samico.CaConexionPruebas.loginRequest();
             inValue.username = username;
             inValue.password = password;
             Samico.CaConexionSaludTotal.loginResponse retVal = ((Samico.CaConexionSaludTotal.USD_WebServiceSoap)(this)).login(inValue);
-            //Samico.CaConexionPruebas.loginResponse retVal = ((Samico.CaConexionPruebas.USD_WebServiceSoap)(this)).login(inValue);
             return retVal.loginReturn;
         }
         

@@ -3713,7 +3713,7 @@
   </wsdl:binding>
   <wsdl:service name="USD_WebService">
     <wsdl:port name="USD_WebServiceSoap" binding="impl:USD_WebServiceSoapSoapBinding">
-      <wsdlsoap:address location="https://stmesa.getronics-latam.com.co:8445/axis/services/USD_R11_WebService" />
+      <wsdlsoap:address location="https://stmesa.axitycolombia.com:8445/axis/services/USD_R11_WebService" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

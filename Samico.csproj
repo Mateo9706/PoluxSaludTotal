@@ -772,6 +772,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\CaConexionSaludTotal\USD_R11_WebService1.wsdl" />
     <None Include="Connected Services\ServiceSAC\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceSAC\configuration.svcinfo" />
     <None Include="Connected Services\ServiceSAC\Reference.svcmap">
@@ -1153,7 +1154,6 @@
     <Content Include="Connected Services\CaConexionSaludTotal\Samico.CaConexionSaludTotal.updateRatingResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\CaConexionSaludTotal\USD_R11_WebService.wsdl" />
     <Content Include="Connected Services\ServiceSAC\Samico.ServiceSAC.CambiarClaveTelefonoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

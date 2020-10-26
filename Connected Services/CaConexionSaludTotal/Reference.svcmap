@@ -19,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://stmesa.getronics-latam.com.co:8445/axis/services/USD_R11_WebService?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://stmesa.axitycolombia.com:8445/axis/services/USD_R11_WebService?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="USD_R11_WebService.wsdl" MetadataType="Wsdl" ID="502cd2a0-cc00-4b44-8a6f-d0ee5e460643" SourceId="1" SourceUrl="https://stmesa.getronics-latam.com.co:8445/axis/services/USD_R11_WebService?wsdl" />
+    <MetadataFile FileName="USD_R11_WebService1.wsdl" MetadataType="Wsdl" ID="946d9bc0-cc1b-4f9b-9131-dae9fcbd4a38" SourceId="1" SourceUrl="https://stmesa.axitycolombia.com:8445/axis/services/USD_R11_WebService?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
