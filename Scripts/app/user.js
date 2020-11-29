@@ -533,7 +533,58 @@ function notifyMessage() {
 
 function NumCaseSamiAnswer(text) {
 
-    if (text.includes("He generado su historial para que el agente se entere de nuestra conversación:"))
+    var es_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    var edge = navigator.userAgent.indexOf("Edge") > -1;
+    var firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+    //var ie = navigator.userAgent.indexOf("MSIE 11") > -1;
+    if (es_chrome || edge || firefox) {
+        //alert("El navegador que se está utilizando es Chrome");
+        if (text.includes("He generado el historial de nuestra conversación:"))
+            return 1;
+        else if (text.includes("en que puedo ser util"))
+            return 2;
+        else if (text.includes("Nuestros Agentes se encuentran ocupados, ¿deseas seguir esperando? o me autorizas para cancelar la petición y enviar el caso al correo de nuestros agentes"))
+            if ($('#validatortimeOutAgent').hasClass('timeOutAgent1'))
+                return 3;
+            else
+                return 1;
+        else
+            return 4;
+    }
+    else {
+        //alert("El navegador que se está utilizando es Internet Explorer");
+        var resp = text.indexOf("He generado el historial de nuestra conversación")
+        var resp2 = text.indexOf("en que puedo ser util")
+        var resp3 = text.indexOf("Nuestros Agentes se encuentran ocupados, ¿deseas seguir esperando ? o me autorizas para cancelar la petición y enviar el caso al correo de nuestros agentes")
+        if (resp2)
+            if (resp !== -1) {
+                return 1;
+            }
+            else {
+                return 4;
+            }
+        if (resp2)
+            if (resp2 !== -1) {
+                return 1;
+            }
+            else {
+                return 2;
+            }
+        if (resp2)
+            if (resp2 !== -1) {
+                return 1;
+            }
+            else {
+                if ($('#validatortimeOutAgent').hasClass('timeOutAgent1'))
+                    return 3;
+            }
+    }
+
+
+
+
+
+    /*if (text.includes("He generado el historial de nuestra conversación:"))
         return 1;
     else if (text.includes("en que puedo ser util"))
         return 2;
@@ -543,7 +594,7 @@ function NumCaseSamiAnswer(text) {
         else
             return 1;
     else
-        return 4;
+        return 4;*/
 }
 
 
