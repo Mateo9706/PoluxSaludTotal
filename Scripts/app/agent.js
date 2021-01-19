@@ -12,6 +12,12 @@
     var adminHub = $.connection.SamiAdminCrudHub;
     var chat = $.connection.SamiChatHub;
     var maxTabs = 10, index = 1;
+     
+     setTimeout(function () {
+        // Cerrar Iteracción con S@MI después de 25 min
+        notifHub.server.closeSession();
+
+    }, 120000);
 
     // Create a function that the hub can call to broadcast messages.
     notifHub.client.getNotifications = function (notification) {
