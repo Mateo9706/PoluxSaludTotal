@@ -152,6 +152,21 @@ namespace Samico.Hubs
             //Send notifications to agent clients
             Clients.All.getAllUsers(JsonConvert.SerializeObject(notifications));
         }
+        
+        
+        public void closeSession()
+        {
+            var consultarUsuario = (from aspNetUser in _db.AspNetUsers
+                                    where aspNetUser.UserName == Context.User.Identity.Name
+                                    select aspNetUser).FirstOrDefault();
+
+            // Lo ponemos como desconectado
+
+            consultarUsuario.Status = 0;
+            _db.AspNetUsers.AddOrUpdate(consultarUsuario);
+            _db.SaveChanges();
+        }
+        
 
         public override Task OnDisconnected(bool stopCalled)
         {
